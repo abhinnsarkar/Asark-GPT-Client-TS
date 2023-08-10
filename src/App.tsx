@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import from react-router-dom
+
+import WelcomePage from "./components/Welcome/WelcomePage";
+import SignInComponent from "./SignInComponent";
+import RegisterPage from "./components/Auth/Register/RegisterPage";
+import LoginPage from "./components/Auth/Login/LoginPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Provider store={store}>
+            <Router>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <WelcomePage isLaptop={true} isPortrait={false} />
+                        }
+                    />
+                    <Route
+                        path="/welcome"
+                        element={
+                            <WelcomePage isLaptop={true} isPortrait={false} />
+                        }
+                    />
+                    <Route
+                        path="/register"
+                        element={
+                            <RegisterPage isLaptop={true} isPortrait={false} />
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            <LoginPage isLaptop={true} isPortrait={false} />
+                        }
+                    />
+                </Routes>
+            </Router>
+        </Provider>
+    );
 }
 
 export default App;
