@@ -1,21 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { apiClient } from "../../../api";
 import { useHandleRegister } from "../../../store/actions/authActions";
 import LoadingModal from "../../../shared/components/LoadingModal";
 import { Box, Button, CssBaseline } from "@mui/material";
-import RegisterHeader from "./RegisterHeader";
-import RegisterMiddle from "./RegisterMiddle";
-import RegisterFooter from "./RegisterFooter";
+import RegisterHeader from "./Sections/RegisterHeader";
+import RegisterMiddle from "./Sections/RegisterMiddle";
+import RegisterFooter from "./Sections/RegisterFooter";
 import { Navigate } from "react-router";
 import useGetIsLoggedIn from "../../../shared/utils/getIsLoggedIn";
+import setAuthToken from "../../../shared/utils/setAuthToken";
 
 const RegisterPage = ({
-    isLaptop,
-    isPortrait,
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
 }: {
-    isLaptop: boolean;
-    isPortrait: boolean;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
 }) => {
+    // const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     if (localStorage.getItem("token")) {
+    //         setAuthToken();
+    //         navigate("/home");
+    //     }
+    // }, [navigate]);
+
     const handleRegister = useHandleRegister(); // Call the useHandleRegister hook to get the function
     interface RegisterUser {
         name: string;
@@ -37,23 +49,6 @@ const RegisterPage = ({
     };
 
     const handleSubmit = async () => {
-        // console.log(email, password, name);
-
-        // const response = await apiClient.get("http://localhost:54321/api");
-
-        // const data = response.data;
-        // const msg = data.msg;
-
-        // console.log("data", data);
-        // console.log("msg", msg);
-
-        // console.log("finished basic api response");
-
-        // const user: RegisterUser = {
-        //     name: "johndoe",
-        //     email: "johndoe@gmail.com",
-        //     password: "password",
-        // };
         const user = { name, email, password };
         handleOpenLoading();
         console.log("user", user);
@@ -79,13 +74,17 @@ const RegisterPage = ({
                     alignItems: "center",
                     display: "flex",
                     flexDirection: "column",
-                    // bgcolor: "green",
                 }}
             >
-                {/* <Button onClick={handleSubmit}>Click</Button> */}
-                <RegisterHeader isLaptop={isLaptop} isPortrait={isPortrait} />
+                <RegisterHeader
+                    horizontalLaptop={horizontalLaptop}
+                    verticalPhone={verticalPhone}
+                    horizontalPhone={horizontalPhone}
+                />
                 <RegisterMiddle
-                    isPortrait={isPortrait}
+                    horizontalLaptop={horizontalLaptop}
+                    verticalPhone={verticalPhone}
+                    horizontalPhone={horizontalPhone}
                     name={name}
                     setName={setName}
                     email={email}
@@ -96,13 +95,16 @@ const RegisterPage = ({
                 />
 
                 <RegisterFooter
-                    isPortrait={isPortrait}
+                    horizontalLaptop={horizontalLaptop}
+                    verticalPhone={verticalPhone}
+                    horizontalPhone={horizontalPhone}
                     handleSubmit={handleSubmit}
                 />
             </Box>
             <LoadingModal
-                isLaptop={isLaptop}
-                isPortrait={isPortrait}
+                horizontalLaptop={horizontalLaptop}
+                verticalPhone={verticalPhone}
+                horizontalPhone={horizontalPhone}
                 open={loadingOpen}
             />
         </React.Fragment>

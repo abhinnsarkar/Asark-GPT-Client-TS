@@ -31,13 +31,13 @@ const Input = styled("input")({
     },
     flexGrow: 1,
     // height: "40px",
-    height: "6vh",
+    // height: "6vh",
     border: "1px solid #4c4c4e",
     borderRadius: "10px",
     color: "white",
     background: "#202123",
     margin: 0,
-    fontSize: "16px",
+    // fontSize: "16px",
     padding: "0 5px",
 });
 
@@ -47,12 +47,18 @@ const CustomInput = ({
     placeholder,
     type,
     handleSubmit,
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
 }: {
     value: string;
     setValue: React.Dispatch<React.SetStateAction<string>>;
     placeholder: string;
     type: string;
     handleSubmit: () => Promise<void>;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
 }) => {
     const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
@@ -65,7 +71,15 @@ const CustomInput = ({
     };
 
     return (
-        <Wrapper>
+        <Wrapper
+            sx={{
+                height: horizontalLaptop
+                    ? "25%"
+                    : verticalPhone
+                    ? "15%"
+                    : "25%",
+            }}
+        >
             <Input
                 value={value}
                 onChange={handleValueChange}

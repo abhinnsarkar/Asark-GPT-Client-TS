@@ -1,9 +1,12 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import * as api from "../../api";
 import { register, login } from "../reducers/authReducer";
+import { openAlert, closeAlert } from "../reducers/alertReducer";
 import setAuthToken from "../../shared/utils/setAuthToken";
 import store from "../store";
+// import { redirect } from "react-router-dom";
+import { redirect } from "react-router";
 
 interface SuccessResponse {
     data: {
@@ -12,6 +15,17 @@ interface SuccessResponse {
             email: string;
             password: string;
             name: string;
+        };
+    };
+}
+
+interface ErrorResponse {
+    error: boolean;
+    exception: {
+        response: {
+            data: {
+                msg: string;
+            };
         };
     };
 }
@@ -38,7 +52,7 @@ interface StateUser {
 export const useHandleRegister = () => {
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleRegister = async ({ user }: { user: RegisterUser }) => {
         try {
@@ -74,10 +88,17 @@ export const useHandleRegister = () => {
                 dispatch(register(stateUser));
                 setAuthToken();
 
+                const alertData = {
+                    content: "Successfully made an account",
+                    severity: "success",
+                };
+                dispatch(openAlert(alertData));
+
                 console.log("Successfully made an account");
                 console.log("pushing to home from register");
 
-                navigate("/home");
+                // navigate("/home");
+                redirect("/home");
             }
         } catch (error) {
             console.error("Error:", error);
@@ -90,14 +111,23 @@ export const useHandleRegister = () => {
 export const useHandleLogin = () => {
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleLogin = async ({ user }: { user: LoginUser }) => {
         try {
             const response = await api.login(user);
 
             if ("error" in response && response.error) {
-                console.error("Error:", response.exception);
+                console.log("caught an error at line 117");
+                console.error("Error:", (response as ErrorResponse).exception);
+                const alertData = {
+                    content:
+                        (response as ErrorResponse).exception.response.data
+                            .msg ||
+                        (response as ErrorResponse).exception.response.data,
+                    severity: "error",
+                };
+                dispatch(openAlert(alertData));
                 return;
             } else {
                 const responseData = (response as SuccessResponse).data;
@@ -126,10 +156,17 @@ export const useHandleLogin = () => {
                 dispatch(login(stateUser));
                 setAuthToken();
 
+                const alertData = {
+                    content: "Successfully logged in",
+                    severity: "success",
+                };
+                dispatch(openAlert(alertData));
+
                 console.log("Successfully logged in");
                 console.log("pushing to home from login");
 
-                navigate("/home");
+                // navigate("/home");
+                redirect("/home");
             }
         } catch (error) {
             console.error("Error:", error);

@@ -2,41 +2,42 @@ import React from "react";
 import { Box, CircularProgress, Modal } from "@mui/material";
 
 const LoadingModal = ({
-    isLaptop,
-    isPortrait,
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
     open,
 }: {
-    isLaptop: boolean;
-    isPortrait: boolean;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
     open: boolean;
 }) => {
-    const verticalPhone = !isLaptop && isPortrait;
-    const horizontalPhone = !isLaptop && !isPortrait;
-    // const horizontalLaptop = isLaptop && !isPortrait;
-
     return (
         <Modal open={open}>
             <Box
-                className="answer-modal"
                 sx={{
                     position: "absolute",
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: verticalPhone
+                    width: horizontalLaptop
+                        ? "10vw"
+                        : verticalPhone
                         ? "50vw"
-                        : horizontalPhone
-                        ? "50vh"
-                        : "10vw",
-                    height: verticalPhone
+                        : "50vh",
+                    height: horizontalLaptop
+                        ? "10vw"
+                        : verticalPhone
                         ? "50vw"
-                        : horizontalPhone
-                        ? "50vh"
-                        : "10vw",
+                        : "50vh",
+                    // width: verticalPhone ? "50vw" :  "50vh",
+                    // height: verticalPhone ? "50vw" : "50vh",
+                    // width: "10vw",
+                    // height: "10vw",
 
                     bgcolor: "#202123",
-                    border: "5px solid #d8c5fc",
-                    borderRadius: "15px",
+                    border: "5px solid #32c4a7",
+                    borderRadius: "10px",
                     boxShadow: 24,
                     p: 4,
                     display: "flex",

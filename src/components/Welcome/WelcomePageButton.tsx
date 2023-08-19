@@ -1,35 +1,46 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
-import { NavigateFunction } from "react-router";
+// import { NavigateFunction, redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router";
 
 const WelcomePageButton = ({
     label,
     endpoint,
-    isLaptop,
-    isPortrait,
-    navigate,
-}: {
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
+}: // navigate,
+{
     label: string;
     endpoint: string;
-    isLaptop: boolean;
-    isPortrait: boolean;
-    navigate: NavigateFunction;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
+    // navigate: NavigateFunction;
 }) => {
+    const navigate = useNavigate();
     return (
         <Button
             sx={{
-                bgcolor: "#d8c3fb",
+                bgcolor: "#32c4a7",
                 "&:hover": {
-                    bgcolor: "#b48cf7",
+                    bgcolor: "#228572",
+                    width: horizontalLaptop ? "35%" : "53%",
+                    height: horizontalLaptop ? "55%" : "50%",
                 },
-                // width: isLaptop ? "40%" : "90%",
-                width: "40%",
-                height: isLaptop ? "4vh" : "12vh",
+                width: horizontalLaptop ? "30%" : "45%",
+                height: horizontalLaptop
+                    ? "50%"
+                    : verticalPhone
+                    ? "40%"
+                    : "75%",
                 color: "white",
                 borderRadius: "10px",
             }}
             onClick={() => {
                 navigate(endpoint);
+                console.log("cliked welcome page btn");
+                // return redirect(endpoint);
             }}
         >
             <Typography textTransform="none">{label}</Typography>

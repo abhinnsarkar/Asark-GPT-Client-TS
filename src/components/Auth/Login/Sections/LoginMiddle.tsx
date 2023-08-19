@@ -1,31 +1,20 @@
 import React from "react";
-// import RegisterInputs from "./RegisterInputs";
 import { Box } from "@mui/material";
-import RegisterInputs from "./RegisterInputs";
+import LoginInputs from "../LoginInputs";
 
-// const RegisterMiddle = ({
-//     isPortrait,
-//     name,
-//     setName,
-//     email,
-//     setEmail,
-//     password,
-//     setPassword,
-//     handleSubmit,
-// }) => {
-const RegisterMiddle = ({
-    isPortrait,
-    name,
-    setName,
+const LoginMiddle = ({
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
     email,
     setEmail,
     password,
     setPassword,
     handleSubmit,
 }: {
-    isPortrait: boolean;
-    name: string;
-    setName: React.Dispatch<React.SetStateAction<string>>;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
     email: string;
     setEmail: React.Dispatch<React.SetStateAction<string>>;
     password: string;
@@ -34,41 +23,39 @@ const RegisterMiddle = ({
 }) => {
     return (
         <Box
-            className="register-input-box"
             sx={{
                 width: "100vw",
-                // height: "30vh",
-                height: isPortrait ? "50vh" : "30vh",
-                // bgcolor: "pink",
+                height: verticalPhone
+                    ? "50vh"
+                    : horizontalLaptop
+                    ? "30vh"
+                    : "60vh",
                 display: "flex",
                 alignItems: "center",
             }}
         >
             <Box
-                className="register-input-center-box-1"
                 sx={{
                     width: "100%",
                     height: "100%",
-                    // bgcolor: "orange",
                     display: "flex",
                     justifyContent: "center",
                 }}
             >
                 <Box
-                    className="register-input-center-box-2"
                     sx={{
-                        // bgcolor: "purple",
                         width: "75%",
                     }}
                 >
-                    <RegisterInputs
-                        name={name}
-                        setName={setName}
+                    <LoginInputs
                         email={email}
                         setEmail={setEmail}
                         password={password}
                         setPassword={setPassword}
                         handleSubmit={handleSubmit}
+                        horizontalLaptop={horizontalLaptop}
+                        verticalPhone={verticalPhone}
+                        horizontalPhone={horizontalPhone}
                     />
                 </Box>
             </Box>
@@ -76,4 +63,4 @@ const RegisterMiddle = ({
     );
 };
 
-export default RegisterMiddle;
+export default LoginMiddle;

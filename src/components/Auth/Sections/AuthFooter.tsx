@@ -1,41 +1,44 @@
 import { Box, Button, Typography } from "@mui/material";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
-import "../../../shared/components/linkStyle.css";
+// import "../../../shared/components/linkStyle.css";
 
-const LoginFooter = ({
-    isPortrait,
+const AuthFooter = ({
+    submitLabel,
+    redirectPath,
+    linkMessage,
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
     handleSubmit,
 }: {
-    isPortrait: boolean;
+    submitLabel: string;
+    redirectPath: string;
+    linkMessage: string;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
     handleSubmit: () => Promise<void>;
 }) => {
     return (
         <>
             <Box
-                className="register-submit-box"
                 sx={{
                     width: "100vw",
                     height: "10vh",
-                    // bgcolor: "red",
                     display: "flex",
-                    // justifyContent: "center",
-                    // alignItems: "center",
                 }}
             >
                 <Box
-                    className="register-submit-center-box-1"
                     sx={{
                         width: "100%",
-                        // bgcolor: "orange",
                         display: "flex",
                         justifyContent: "center",
                     }}
                 >
                     <Box
-                        className="submit-title-center-box-2"
                         sx={{
-                            // bgcolor: "purple",
                             width: "75%",
                             display: "flex",
                             alignItems: "center",
@@ -43,55 +46,53 @@ const LoginFooter = ({
                     >
                         <Button
                             sx={{
-                                bgcolor: "#d8c3fb",
-                                width: isPortrait ? "90%" : "35%",
+                                bgcolor: "#32c4a7",
+                                width: verticalPhone ? "90%" : "35%",
                                 height: "75%",
                                 color: "white",
                                 borderRadius: "10px",
                                 "&:hover": {
-                                    bgcolor: "#b48cf7",
+                                    bgcolor: "#228572",
                                 },
                                 justifyContent: "center",
                             }}
                             onClick={handleSubmit}
                         >
-                            <Typography textTransform="none">Log In</Typography>{" "}
-                            <LoginIcon />
+                            <Typography textTransform="none">
+                                {submitLabel}
+                            </Typography>{" "}
+                            {submitLabel === "Sign Up" ? (
+                                <PersonAddAltIcon />
+                            ) : (
+                                <LoginIcon />
+                            )}
                         </Button>
                     </Box>
                 </Box>
             </Box>
 
             <Box
-                className="register-title-box"
                 sx={{
                     width: "100vw",
-                    // height: "12vh",
-                    height: isPortrait ? "12vh" : "15vh",
-                    // bgcolor: "blue",
+                    height: "15vh",
                     display: "flex",
-                    // alignItems: "center",
                 }}
             >
                 <Box
-                    className="register-title-center-box-1"
                     sx={{
                         width: "100%",
-                        // bgcolor: "orange",
                         display: "flex",
                         justifyContent: "center",
                         marginBottom: 0,
                     }}
                 >
                     <Box
-                        className="register-title-center-box-2"
                         sx={{
-                            // bgcolor: "purple",
                             width: "75%",
                         }}
                     >
-                        <Link className="custom" to="/register">
-                            Need an account? Make one
+                        <Link className="custom" to={redirectPath}>
+                            {linkMessage}
                         </Link>
                     </Box>
                 </Box>
@@ -100,4 +101,4 @@ const LoginFooter = ({
     );
 };
 
-export default LoginFooter;
+export default AuthFooter;

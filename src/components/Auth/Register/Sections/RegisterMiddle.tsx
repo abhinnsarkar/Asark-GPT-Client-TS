@@ -1,16 +1,24 @@
 import React from "react";
 import { Box } from "@mui/material";
-import LoginInputs from "./LoginInputs";
+import RegisterInputs from "../RegisterInputs";
 
-const LoginMiddle = ({
-    isPortrait,
+const RegisterMiddle = ({
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
+    name,
+    setName,
     email,
     setEmail,
     password,
     setPassword,
     handleSubmit,
 }: {
-    isPortrait: boolean;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
+    name: string;
+    setName: React.Dispatch<React.SetStateAction<string>>;
     email: string;
     setEmail: React.Dispatch<React.SetStateAction<string>>;
     password: string;
@@ -19,39 +27,41 @@ const LoginMiddle = ({
 }) => {
     return (
         <Box
-            className="register-input-box"
             sx={{
                 width: "100vw",
-                // height: "30vh",
-                height: isPortrait ? "50vh" : "30vh",
-                // bgcolor: "pink",
+                height: verticalPhone
+                    ? "50vh"
+                    : horizontalLaptop
+                    ? "30vh"
+                    : "60vh",
                 display: "flex",
                 alignItems: "center",
             }}
         >
             <Box
-                className="register-input-center-box-1"
                 sx={{
                     width: "100%",
                     height: "100%",
-                    // bgcolor: "orange",
                     display: "flex",
                     justifyContent: "center",
                 }}
             >
                 <Box
-                    className="register-input-center-box-2"
                     sx={{
-                        // bgcolor: "purple",
                         width: "75%",
                     }}
                 >
-                    <LoginInputs
+                    <RegisterInputs
+                        name={name}
+                        setName={setName}
                         email={email}
                         setEmail={setEmail}
                         password={password}
                         setPassword={setPassword}
                         handleSubmit={handleSubmit}
+                        horizontalLaptop={horizontalLaptop}
+                        verticalPhone={verticalPhone}
+                        horizontalPhone={horizontalPhone}
                     />
                 </Box>
             </Box>
@@ -59,4 +69,4 @@ const LoginMiddle = ({
     );
 };
 
-export default LoginMiddle;
+export default RegisterMiddle;

@@ -10,6 +10,9 @@ const RegisterInputs = ({
     password,
     setPassword,
     handleSubmit,
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
 }: {
     name: string;
     setName: React.Dispatch<React.SetStateAction<string>>;
@@ -18,6 +21,9 @@ const RegisterInputs = ({
     password: string;
     setPassword: React.Dispatch<React.SetStateAction<string>>;
     handleSubmit: () => Promise<void>;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
 }) => {
     return (
         <Box
@@ -34,6 +40,9 @@ const RegisterInputs = ({
                 placeholder="Name"
                 type="text"
                 handleSubmit={handleSubmit}
+                horizontalLaptop={horizontalLaptop}
+                verticalPhone={verticalPhone}
+                horizontalPhone={horizontalPhone}
             />
             <CustomInput
                 value={email}
@@ -41,6 +50,9 @@ const RegisterInputs = ({
                 placeholder="Email"
                 type="text"
                 handleSubmit={handleSubmit}
+                horizontalLaptop={horizontalLaptop}
+                verticalPhone={verticalPhone}
+                horizontalPhone={horizontalPhone}
             />
             <CustomInput
                 value={password}
@@ -48,6 +60,9 @@ const RegisterInputs = ({
                 placeholder="Password"
                 type="password"
                 handleSubmit={handleSubmit}
+                horizontalLaptop={horizontalLaptop}
+                verticalPhone={verticalPhone}
+                horizontalPhone={horizontalPhone}
             />
         </Box>
     );

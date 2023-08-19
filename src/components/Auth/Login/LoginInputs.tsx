@@ -8,12 +8,18 @@ const LoginInputs = ({
     password,
     setPassword,
     handleSubmit,
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
 }: {
     email: string;
     setEmail: React.Dispatch<React.SetStateAction<string>>;
     password: string;
     setPassword: React.Dispatch<React.SetStateAction<string>>;
     handleSubmit: () => Promise<void>;
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
 }) => {
     return (
         <Box
@@ -30,6 +36,9 @@ const LoginInputs = ({
                 placeholder="Email"
                 type="text"
                 handleSubmit={handleSubmit}
+                horizontalLaptop={horizontalLaptop}
+                verticalPhone={verticalPhone}
+                horizontalPhone={horizontalPhone}
             />
             <CustomInput
                 value={password}
@@ -37,6 +46,9 @@ const LoginInputs = ({
                 placeholder="Password"
                 type="password"
                 handleSubmit={handleSubmit}
+                horizontalLaptop={horizontalLaptop}
+                verticalPhone={verticalPhone}
+                horizontalPhone={horizontalPhone}
             />
         </Box>
     );
