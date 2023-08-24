@@ -181,7 +181,10 @@ const AnswerModal: React.FC<AnswerModalProps> = ({
                         width: "100%",
                     }}
                 >
-                    <IconButton onClick={handleClose}>
+                    <IconButton
+                        onClick={handleClose}
+                        style={{ color: "white" }}
+                    >
                         <CloseIcon fontSize="large" />
                     </IconButton>
                 </Box>

@@ -224,9 +224,9 @@ const LoginPage: React.FC<LoginPageProps> = ({
         });
     };
 
-    // if (useGetIsLoggedIn()) {
-    //     return <Navigate to="/home" />;
-    // }
+    if (useGetIsLoggedIn()) {
+        return <Navigate to="/home" />;
+    }
 
     return (
         <React.Fragment>

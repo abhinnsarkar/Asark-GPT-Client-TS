@@ -205,7 +205,12 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                 // setPrevMsgs([...arrayOfPrevMsgs].reverse());
                 arrayOfPrevMsgs = previousMsgs;
                 console.log("history says msgs are", arrayOfPrevMsgs);
-                setPrevMsgs(arrayOfPrevMsgs.reverse());
+                if (arrayOfPrevMsgs.length > 0) {
+                    setPrevMsgs(arrayOfPrevMsgs.reverse());
+                } else {
+                    setPrevMsgs([]);
+                }
+
                 setMsgsLoading(false);
             }, 2000);
 
@@ -320,7 +325,7 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                         }}
                     >
                         <Typography sx={{ marginRight: "2%" }} variant="h6">
-                            Count : {msgsCount}
+                            Count : {msgsCount ? msgsCount : 0}
                         </Typography>
                     </Box>
                 </Box>

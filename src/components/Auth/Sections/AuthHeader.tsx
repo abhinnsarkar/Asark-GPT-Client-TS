@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 // import { redirect } from "react-router-dom";
-import { redirect } from "react-router";
+import { redirect, useNavigate } from "react-router";
 // import { useNavigate } from "react-router";
 
 const AuthHeader = ({
@@ -15,7 +15,7 @@ const AuthHeader = ({
     horizontalPhone: boolean;
     header: string;
 }) => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -51,9 +51,14 @@ const AuthHeader = ({
                                 justifyContent: "flex-start",
                                 marginTop: horizontalPhone ? "1.5%" : "0%",
                             }}
+                            // onClick={() => {
+                            //     // navigate("/welcome");
+                            //     redirect("/welcome");
+                            // }}
                             onClick={() => {
-                                // navigate("/welcome");
-                                redirect("/welcome");
+                                navigate("/welcome");
+                                console.log("cliked welcome page btn");
+                                // return redirect(endpoint);
                             }}
                         >
                             <ArrowBackIosNewIcon />{" "}
