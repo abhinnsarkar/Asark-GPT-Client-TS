@@ -2,7 +2,7 @@ import { Token } from "@mui/icons-material";
 import axios, { AxiosRequestConfig } from "axios";
 
 export const apiClient = axios.create({
-    baseURL: "http://localhost:54321/api",
+    baseURL: "https://asark-gpt-backend.onrender.com",
     headers: {
         "Content-Type": "application/json",
     },
