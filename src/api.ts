@@ -14,6 +14,7 @@ export const register = async (user: object) => {
         console.log("inside api register try");
         console.log(user);
         console.log(`Giving endpoint data : ${user}`);
+        console.log("api is ", apiClient);
         return await apiClient.post("/auth/register", user);
     } catch (exception) {
         return {
