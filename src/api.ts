@@ -71,8 +71,8 @@ export const sendPrompt = async (promptValue: string) => {
 
     try {
         const response = await fetch(
-            // "https://asark-gpt-backend.onrender.com/api/prompts",
-            "http://localhost:54321/api/prompts",
+            "https://asark-gpt-backend.onrender.com/api/prompts",
+            // "http://localhost:54321/api/prompts",
             options
         );
         const data = await response.json();
