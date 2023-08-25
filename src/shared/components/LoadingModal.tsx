@@ -45,7 +45,7 @@ const LoadingModal = ({
                     justifyContent: "center",
                 }}
             >
-                <CircularProgress />
+                <CircularProgress sx={{ color: "white" }} />
             </Box>
         </Modal>
     );
