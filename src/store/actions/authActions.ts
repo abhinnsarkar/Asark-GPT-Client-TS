@@ -59,7 +59,14 @@ export const useHandleRegister = () => {
             const response = await api.register(user);
 
             if ("error" in response && response.error) {
-                console.error("Error:", response.exception);
+                const errorRes = response as ErrorResponse;
+
+                console.error("Error:", errorRes.exception);
+                const alertData = {
+                    content: errorRes.exception.response.data.msg,
+                    severity: "error",
+                };
+                dispatch(openAlert(alertData));
                 return;
             } else {
                 const responseData = (response as SuccessResponse).data;
