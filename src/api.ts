@@ -2,7 +2,7 @@ import { Token } from "@mui/icons-material";
 import axios, { AxiosRequestConfig } from "axios";
 
 export const apiClient = axios.create({
-    baseURL: "https://asark-gpt-backend.onrender.com",
+    baseURL: "https://asark-gpt-backend.onrender.com/api",
     headers: {
         "Content-Type": "application/json",
     },
@@ -14,7 +14,7 @@ export const register = async (user: object) => {
         console.log("inside api register try");
         console.log(user);
         console.log(`Giving endpoint data : ${user}`);
-        console.log("api is ", apiClient);
+        // console.log("api is ", apiClient);
         return await apiClient.post("/auth/register", user);
     } catch (exception) {
         return {
