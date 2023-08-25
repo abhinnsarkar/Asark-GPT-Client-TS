@@ -55,7 +55,7 @@ export const sendPrompt = async (promptValue: string) => {
 
     const token = localStorage.getItem("token") || "";
 
-    console.log("token set as", token);
+    console.log("token retrieved as", token);
 
     const options = {
         method: "POST",
@@ -77,7 +77,7 @@ export const sendPrompt = async (promptValue: string) => {
         );
         const data = await response.json();
 
-        // console.log("api postmprompt  try ", data);
+        console.log("api postmprompt  try ", data);
         console.log("ai said in frontend", data["aiResponse"]);
         console.log("exiting");
 

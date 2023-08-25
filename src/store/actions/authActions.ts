@@ -157,7 +157,7 @@ export const useHandleLogin = () => {
 
                 console.log("Dispatching action:", login(stateUser));
                 console.log("Before dispatch:", store.getState().auth);
-                dispatch(register(stateUser));
+                dispatch(login(stateUser));
                 console.log("After dispatch:", store.getState().auth);
 
                 dispatch(login(stateUser));
