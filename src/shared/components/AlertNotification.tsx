@@ -18,7 +18,7 @@ const AlertNotification: React.FC<AlertNotificationProps> = ({
     const dispatch = useDispatch();
 
     const handleClose = () => {
-        dispatch(closeAlert()); // Dispatch the closeAlert action
+        dispatch(closeAlert());
     };
 
     const severity: AlertSeverity = (alert.severity as AlertSeverity) || "info"; // Default to 'info' if severity is missing or invalid
@@ -31,6 +31,9 @@ const AlertNotification: React.FC<AlertNotificationProps> = ({
             autoHideDuration={2000}
         >
             <Alert
+                sx={{
+                    borderRadius: "10px",
+                }}
                 style={{
                     boxShadow: "none",
                 }}

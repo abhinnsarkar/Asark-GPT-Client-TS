@@ -3,6 +3,17 @@ import AccountInfo from "./Info/AccountInfo";
 import AccountButtons from "./AccountButtons";
 import AvatarBox from "./AvatarBox";
 import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+
+interface authStructure {
+    user: {
+        name: string;
+        email: string;
+    };
+    isAuthenticated: boolean;
+    token: string;
+}
 
 type AccountInnerBoxProps = {
     horizontalLaptop: boolean;
@@ -16,17 +27,18 @@ const AccountInnerBox: React.FC<AccountInnerBoxProps> = ({
     horizontalPhone,
     isPopup,
 }) => {
+    const authDetails = useSelector(
+        (state: RootState) => state.auth
+    ) as authStructure;
+
+    const username = authDetails.user.name;
+
     return (
         <Box
             className="box-main"
             sx={{
-                // width: "50%",
                 width: horizontalLaptop || horizontalPhone ? "98%" : "50%",
-                // marginTop: "1%",
-                // marginTop: "0%",
                 height: "98%",
-                // bgcolor: "#202123",
-                // bgcolor: "red",
                 border: horizontalLaptop ? "2px solid #32c4a7" : "",
                 borderRadius: horizontalLaptop ? "10px" : "",
             }}
@@ -41,7 +53,6 @@ const AccountInnerBox: React.FC<AccountInnerBoxProps> = ({
                     width: "100%",
                     height: "100%",
                     color: "white",
-                    // bgcolor: "pink",
                 }}
                 style={{
                     whiteSpace: "nowrap",
@@ -53,7 +64,7 @@ const AccountInnerBox: React.FC<AccountInnerBoxProps> = ({
                     <AvatarBox
                         verticalPhone={verticalPhone}
                         isPopup={isPopup}
-                        name="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                        name={username}
                     />
                 ) : (
                     <></>

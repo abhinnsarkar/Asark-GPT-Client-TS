@@ -10,9 +10,6 @@ const Avatar = ({
     isPopup: boolean;
     name: string;
 }) => {
-    console.log("name is ", name);
-    console.log("popup is ", isPopup);
-
     return (
         <Box
             sx={{

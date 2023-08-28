@@ -27,13 +27,12 @@ const AvatarBox = ({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                // bgcolor: "red",
             }}
         >
             <Avatar
                 verticalPhone={verticalPhone}
                 isPopup={isPopup}
-                name={"user"}
+                name={name}
             />
         </Box>
     );
