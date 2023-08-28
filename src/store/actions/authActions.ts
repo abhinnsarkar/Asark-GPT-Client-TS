@@ -1,12 +1,13 @@
 import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router";
 import * as api from "../../api";
-import { register, login } from "../reducers/authReducer";
+import { register, login, deleteAccount } from "../reducers/authReducer";
 import { openAlert, closeAlert } from "../reducers/alertReducer";
 import setAuthToken from "../../shared/utils/setAuthToken";
 import store from "../store";
 // import { redirect } from "react-router-dom";
 import { redirect } from "react-router";
+import logout from "../../shared/utils/logout";
 
 interface SuccessResponse {
     data: {
@@ -181,4 +182,55 @@ export const useHandleLogin = () => {
     };
 
     return handleLogin;
+};
+
+export const useDeleteAccount = () => {
+    const dispatch = useDispatch();
+
+    // const navigate = useNavigate();
+
+    const handleDeleteAccount = async () => {
+        try {
+            const response = await api.deleteAccount();
+
+            if ("error" in response && response.error) {
+                console.error("Error:", (response as ErrorResponse).exception);
+                const alertData = {
+                    content:
+                        (response as ErrorResponse).exception.response.data
+                            .msg ||
+                        (response as ErrorResponse).exception.response.data,
+                    severity: "error",
+                };
+                dispatch(openAlert(alertData));
+                return;
+            } else {
+                // const responseData = (response as SuccessResponse).data;
+
+                const alertData = {
+                    content: "Successfully Deleted Account",
+                    severity: "success",
+                };
+                dispatch(openAlert(alertData));
+
+                setTimeout(() => {
+                    logout();
+
+                    setTimeout(() => {
+                        dispatch(deleteAccount());
+                    }, 2000);
+
+                    console.log("Successfully deleted account");
+                    console.log("pushing to welcome from home");
+
+                    // navigate("/home");
+                    // redirect("/");
+                }, 2500);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+    return handleDeleteAccount;
 };

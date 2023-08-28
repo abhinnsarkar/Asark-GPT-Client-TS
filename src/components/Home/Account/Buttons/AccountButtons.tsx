@@ -37,7 +37,11 @@ const AccountButtons = ({
                     justifyContent: "space-evenly",
                 }}
             >
-                <DeleteAccountButton verticalPhone={verticalPhone} />
+                <DeleteAccountButton
+                    horizontalLaptop={horizontalLaptop}
+                    horizontalPhone={horizontalPhone}
+                    verticalPhone={verticalPhone}
+                />
                 <LogoutButton verticalPhone={verticalPhone} />
                 {/* <Button>Hi</Button>
                 <Button>Hi</Button> */}

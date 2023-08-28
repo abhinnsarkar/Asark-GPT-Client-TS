@@ -3,13 +3,27 @@ import React from "react";
 // import DeleteAccountModal from "./DeleteAccountModal";
 import DeleteButton from "./Delete/DeleteButton";
 
-const DeleteAccountButton = ({ verticalPhone }: { verticalPhone: boolean }) => {
+type DeleteAccountButtonProps = {
+    horizontalLaptop: boolean;
+    verticalPhone: boolean;
+    horizontalPhone: boolean;
+};
+
+const DeleteAccountButton: React.FC<DeleteAccountButtonProps> = ({
+    horizontalLaptop,
+    verticalPhone,
+    horizontalPhone,
+}) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
         <>
-            <DeleteButton verticalPhone={verticalPhone} />
+            <DeleteButton
+                horizontalLaptop={horizontalLaptop}
+                horizontalPhone={horizontalPhone}
+                verticalPhone={verticalPhone}
+            />
             {/* <DeleteAccountModal
                 isLaptop={isLaptop}
                 isPortrait={isPortrait}

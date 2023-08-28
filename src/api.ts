@@ -2,7 +2,8 @@ import { Token } from "@mui/icons-material";
 import axios, { AxiosRequestConfig } from "axios";
 
 export const apiClient = axios.create({
-    baseURL: "https://asark-gpt-backend.onrender.com/api",
+    // baseURL: "https://asark-gpt-backend.onrender.com/api",
+    baseURL: "http://localhost:54321/api/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -71,8 +72,8 @@ export const sendPrompt = async (promptValue: string) => {
 
     try {
         const response = await fetch(
-            "https://asark-gpt-backend.onrender.com/api/prompts",
-            // "http://localhost:54321/api/prompts",
+            // "https://asark-gpt-backend.onrender.com/api/prompts",
+            "http://localhost:54321/api/prompts",
             options
         );
         const data = await response.json();
@@ -158,6 +159,25 @@ export const getMessagesCount = async () => {
         const count = await apiClient.get("/prompts/count");
 
         return count;
+    } catch (exception) {
+        return {
+            error: true,
+            exception,
+        };
+    }
+};
+
+export const deleteAccount = async () => {
+    console.log("entered api delete account");
+    try {
+        console.log("inside api delete account try");
+        console.log("token", localStorage.getItem("token"));
+        // apiClient.headers["x-auth-token"] = localStorage.getItem("token");
+        const headers = {
+            "x-auth-token": localStorage.getItem("token"),
+        };
+
+        return await apiClient.post("/auth/delete", headers);
     } catch (exception) {
         return {
             error: true,
