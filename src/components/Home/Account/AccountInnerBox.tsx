@@ -1,6 +1,6 @@
 import React from "react";
 import AccountInfo from "./Info/AccountInfo";
-import AccountButtons from "./Buttons/AccountButtons";
+import AccountButtons from "./AccountButtons";
 import AvatarBox from "./AvatarBox";
 import { Box } from "@mui/material";
 

@@ -1,34 +1,23 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import { useDeleteAccount } from "../../../../../store/actions/authActions";
 import DeleteModal from "./DeleteModal";
 
-type DeleteButtonProps = {
+import { Button, Typography } from "@mui/material";
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+
+type DeleteAccountButtonProps = {
     horizontalLaptop: boolean;
     verticalPhone: boolean;
     horizontalPhone: boolean;
 };
 
-const DeleteButton: React.FC<DeleteButtonProps> = ({
+const DeleteAccountButton: React.FC<DeleteAccountButtonProps> = ({
     horizontalLaptop,
     verticalPhone,
     horizontalPhone,
 }) => {
-    const [open, setOpen] = React.useState<boolean>(false);
+    const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    // console.log("button should be small");
-    const deleteAccount = useDeleteAccount();
-
-    const handleDeleteAccount = async () => {
-        // const user = { email, password };
-        // handleOpenLoading();
-        // console.log("user", user);
-
-        await deleteAccount();
-    };
     return (
         <>
             <Button
@@ -74,4 +63,4 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
     );
 };
 
-export default DeleteButton;
+export default DeleteAccountButton;

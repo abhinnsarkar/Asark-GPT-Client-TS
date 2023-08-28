@@ -30,7 +30,13 @@ const AlertNotification: React.FC<AlertNotificationProps> = ({
             onClose={handleClose}
             autoHideDuration={2000}
         >
-            <Alert severity={severity} variant="filled">
+            <Alert
+                style={{
+                    boxShadow: "none",
+                }}
+                severity={severity}
+                variant="filled"
+            >
                 {alert.content}
             </Alert>
         </Snackbar>

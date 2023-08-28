@@ -16,7 +16,6 @@ const ChatSection: React.FC<ChatSectionProps> = ({
     return (
         <Box
             sx={{
-                // bgcolor: "green",
                 width: horizontalLaptop ? "59.5%" : "100%",
                 display: "flex",
                 flexDirection: "column",

@@ -1,6 +1,36 @@
 import { Token } from "@mui/icons-material";
 import axios, { AxiosRequestConfig } from "axios";
 
+interface Chat {
+    user: string;
+    ai: string;
+    _id: string;
+}
+
+interface getPreviousChatsResponse {
+    transitional: Record<string, any>;
+    adapter: any[];
+    transformRequest: any[];
+    transformResponse: any[];
+    timeout: number;
+
+    data: {
+        chats: Chat[];
+        length: number;
+    };
+
+    headers: {
+        "content-length": string;
+        "content-type": string;
+        [headerName: string]: string;
+    };
+
+    request: XMLHttpRequest;
+
+    status: number;
+    statusText: string;
+}
+
 export const apiClient = axios.create({
     // baseURL: "https://asark-gpt-backend.onrender.com/api",
     baseURL: "http://localhost:54321/api/",
@@ -40,30 +70,14 @@ export const login = async (user: object) => {
     }
 };
 
-interface PromptOptions {
-    method: string;
-    body: string;
-    headers: {
-        "Content-Type": string;
-        "x-auth-token": string;
-    };
-}
-
 export const sendPrompt = async (promptValue: string) => {
-    console.log("entered api send prompt");
-
-    console.log("local storage token", localStorage.getItem("token"));
-
     const token = localStorage.getItem("token") || "";
-
-    console.log("token retrieved as", token);
 
     const options = {
         method: "POST",
         body: JSON.stringify({
             promptValue,
         }),
-
         headers: {
             "Content-Type": "application/json",
             "x-auth-token": token,
@@ -73,14 +87,10 @@ export const sendPrompt = async (promptValue: string) => {
     try {
         const response = await fetch(
             // "https://asark-gpt-backend.onrender.com/api/prompts",
-            "http://localhost:54321/api/prompts",
+            "http://localhost:54321/api/chats",
             options
         );
         const data = await response.json();
-
-        console.log("api postmprompt  try ", data);
-        console.log("ai said in frontend", data["aiResponse"]);
-        console.log("exiting");
 
         return data["aiResponse"];
     } catch (error) {
@@ -88,57 +98,26 @@ export const sendPrompt = async (promptValue: string) => {
     }
 };
 
-// export const getPrevMessages = async () => {
-//     console.log("entered api get prev messages");
-//     try {
-//         console.log("inside api get prev msgs try");
-//         console.log("token = ", localStorage.getItem("token"));
-//         const responseFromGet = await apiClient.get("/api/prompts");
-//         var msgs = [];
-//         for (
-//             let i = 0;
-//             i < Object.keys(responseFromGet.data["msgs"]).length;
-//             i++
-//         ) {
-//             msgs.push(
-//                 responseFromGet.data["msgs"][
-//                     Object.keys(responseFromGet.data["msgs"])[i]
-//                 ]
-//             );
-//         }
-//         return msgs;
-//     } catch (exception) {
-//         return {
-//             error: true,
-//             exception,
-//         };
-//     }
-// };
-
-export const getMessages = async () => {
-    console.log("entered api get messages");
+export const getPreviousChats = async () => {
     try {
-        console.log("inside api get msg try");
         const token = localStorage.getItem("token");
-        console.log("token = ", token);
-
         apiClient.defaults.headers["x-auth-token"] = token;
 
-        const responseFromGet = await apiClient.get("/prompts");
+        const retrievedChatsResponse = (await apiClient.get(
+            "/chats"
+        )) as getPreviousChatsResponse;
 
-        var msgs = [];
+        const retrievedChats = retrievedChatsResponse.data.chats;
+
+        var previousChats: any = [];
         for (
             let i = 0;
-            i < Object.keys(responseFromGet.data["msgs"]).length;
+            i < Object.keys(retrievedChatsResponse.data["chats"]).length;
             i++
         ) {
-            msgs.push(
-                responseFromGet.data["msgs"][
-                    Object.keys(responseFromGet.data["msgs"])[i]
-                ]
-            );
+            previousChats.push(retrievedChats[i]);
         }
-        return msgs;
+        return previousChats;
     } catch (exception) {
         return {
             error: true,
@@ -147,18 +126,28 @@ export const getMessages = async () => {
     }
 };
 
-export const getMessagesCount = async () => {
-    console.log("entered api get messages count");
-    try {
-        console.log("inside api get msg count try");
-        const token = localStorage.getItem("token");
-        console.log("token = ", token);
+type getPreviousChatsCountResponse = {
+    data: {
+        count: number;
+    };
+    status: number;
+    statusText: string;
+    headers: any;
+    config: any;
+    request: XMLHttpRequest;
+};
 
+export const getPreviousChatsCount = async () => {
+    try {
+        const token = localStorage.getItem("token");
         apiClient.defaults.headers["x-auth-token"] = token;
 
-        const count = await apiClient.get("/prompts/count");
+        const previousChatsCountResponse = (await apiClient.get(
+            "/chats/previous-count"
+        )) as getPreviousChatsCountResponse;
+        const previousChatsCount = previousChatsCountResponse.data.count;
 
-        return count;
+        return previousChatsCount;
     } catch (exception) {
         return {
             error: true,
@@ -168,11 +157,7 @@ export const getMessagesCount = async () => {
 };
 
 export const deleteAccount = async () => {
-    console.log("entered api delete account");
     try {
-        console.log("inside api delete account try");
-        console.log("token", localStorage.getItem("token"));
-        // apiClient.headers["x-auth-token"] = localStorage.getItem("token");
         const headers = {
             "x-auth-token": localStorage.getItem("token"),
         };

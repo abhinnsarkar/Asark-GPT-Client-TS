@@ -37,27 +37,16 @@ export const PromptInput: React.FC<PromptInputProps> = ({
     const handleCloseLoading = () => setLoadingOpen(false);
 
     const useCloseModal = async () => {
-        // const dispatch = useDispatch();
-        // const useCloseModal = (dispatch) => {
         console.log("closing modal");
         setPromptValue("");
         handleCloseLoading();
         handleCloseAnswer();
         console.log("abt to display alert");
         const alertData = {
-            content: "Click the realod icon to display all messages",
+            content: "Click the reload icon to display all messages",
             severity: "info",
         };
         dispatch(openAlert(alertData));
-
-        setTimeout(function () {
-            const alertData = {
-                content: "Please give some time for ai to generate response",
-                severity: "info",
-            };
-            dispatch(openAlert(alertData));
-        }, 2000);
-        // await getMessages();
     };
 
     const [promptValue, setPromptValue] = useState("");
@@ -81,6 +70,13 @@ export const PromptInput: React.FC<PromptInputProps> = ({
 
     const handleSend = async () => {
         handleOpenLoading();
+        setTimeout(function () {
+            const alertData = {
+                content: "Please give some time for ai to generate response",
+                severity: "info",
+            };
+            dispatch(openAlert(alertData));
+        }, 2000);
         console.log("prompt is : ", promptValue);
         const answer = await getResponse();
 
@@ -90,19 +86,11 @@ export const PromptInput: React.FC<PromptInputProps> = ({
     };
 
     const CssTextField = styled(TextField)({
-        // "& label.Mui-focused": {
-        //     color: "white",
-        // },
-        // "& .MuiInput-underline:after": {
-        //     borderBottomColor: "#32c4a7",
-        // },
         "& .MuiOutlinedInput-root": {
             "& fieldset": {
                 borderColor: "#32c4a7",
             },
-            // "&:hover fieldset": {
-            //     borderColor: "#32c4a7",
-            // },
+
             "&.Mui-focused fieldset": {
                 borderColor: "#32c4a7",
             },
@@ -115,71 +103,10 @@ export const PromptInput: React.FC<PromptInputProps> = ({
         color: "white",
     };
 
-    const MainContainer = styled("div")({
-        height: "50%",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-    });
-
-    const Input = styled("input")({
-        backgroundColor: "#202123",
-        borderColor: "#32c4a7",
-        width: "97%",
-        height: "100%",
-        color: "white",
-        // border: "none",
-        borderRadius: "10px",
-        fontSize: "14px",
-        padding: "0 10px",
-        // marginBottom: "0px",
-    });
-
     return (
-        // <>
-        //     <MainContainer>
-        //         <Input
-        //             placeholder="Prompt"
-        //             value={promptValue}
-        //             onChange={handlePromptChange}
-        //             onKeyDown={handleKeyDown}
-        //         />
-
-        //         <IconButton
-        //             color="primary"
-        //             edge="end"
-        //             sx={{
-        //                 "&:hover": {
-        //                     bgcolor: "#32c4a7",
-        //                 },
-        //                 marginRight: "0.25em",
-        //             }}
-        //             onClick={handleSend}
-        //         >
-        //             <SendIcon />
-        //         </IconButton>
-        //     </MainContainer>
-        //     <AnswerModal
-        //         isLaptop={isLaptop}
-        //         isPortrait={isPortrait}
-        //         open={answerOpen}
-        //         handleClose={useCloseModal}
-        //         user={promptValue}
-        //         ai={aiValue}
-        //     />
-        //     <LoadingModal
-        //         isLaptop={isLaptop}
-        //         isPortrait={isPortrait}
-        //         open={loadingOpen}
-        //     />
-        // </>
-
         <Box
             sx={{
-                // bgcolor: "red",
                 width: "100%",
-                // height: "100%",
                 height: "10%",
             }}
         >
@@ -197,7 +124,6 @@ export const PromptInput: React.FC<PromptInputProps> = ({
                     borderWidth: "2px",
                     marginTop: "1%",
                     height: "100%",
-                    // width: "99%",
                     width: "100%",
                     ".MuiOutlinedInput-root": {
                         borderRadius: "10px",

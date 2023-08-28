@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import React from "react";
-import logout from "../../../../shared/utils/logout";
+import logout from "../../../shared/utils/logout";
 
 const LogoutButton = ({ verticalPhone }: { verticalPhone: boolean }) => {
     return (

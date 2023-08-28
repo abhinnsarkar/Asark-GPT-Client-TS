@@ -1,6 +1,6 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
-import DeleteAccountButton from "./DeleteAccountButton";
+import DeleteAccountButton from "./Delete/DeleteAccountButton";
 import LogoutButton from "./LogoutButton";
 
 const AccountButtons = ({
@@ -19,7 +19,6 @@ const AccountButtons = ({
             className="box-buttons"
             sx={{
                 height: horizontalPhone || horizontalLaptop ? "50%" : "25%",
-                // bgcolor: "red",
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
@@ -43,16 +42,6 @@ const AccountButtons = ({
                     verticalPhone={verticalPhone}
                 />
                 <LogoutButton verticalPhone={verticalPhone} />
-                {/* <Button>Hi</Button>
-                <Button>Hi</Button> */}
-                {/* <Logout
-                                        isLaptop={isLaptop}
-                                        isPortrait={isPortrait}
-                                    />
-                                    <DeleteAccount
-                                        isLaptop={isLaptop}
-                                        isPortrait={isPortrait}
-                                    /> */}
             </Box>
         </Box>
     );

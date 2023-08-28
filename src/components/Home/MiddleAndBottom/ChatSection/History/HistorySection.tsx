@@ -1,150 +1,10 @@
-// import React, { useEffect, useState } from "react";
-// import HistoryHeader from "./HistoryHeader";
-// import { Box, CircularProgress } from "@mui/material";
-// import ChatHistory from "./ChatHistory";
-// import { getPrevMessages } from "../../../../../store/actions/chatActions";
-// import ChatHistoryItem from "./ChatHistoryItem";
-
-// type HistorySectionProps = {
-//     horizontalLaptop: boolean;
-//     verticalPhone: boolean;
-//     horizontalPhone: boolean;
-// };
-// export const HistorySection: React.FC<HistorySectionProps> = ({
-//     horizontalLaptop,
-//     verticalPhone,
-//     horizontalPhone,
-// }) => {
-//     interface Message {
-//         user: string;
-//         ai: string;
-//     }
-
-//     const [msgsLoading, setMsgsLoading] = useState<boolean>();
-//     const [prevMsgs, setPrevMsgs] = useState<Message[]>();
-
-//     const refresh = async () => {
-//         setMsgsLoading(true);
-//         fetchData();
-//     };
-
-//     const fetchData = async () => {
-//         try {
-//             const previousMsgs = (await getPrevMessages()) as [Message];
-//             console.log("history section said", previousMsgs);
-//             const arrayOfPrevMsgs: Message[] = [];
-
-//             setTimeout(function () {
-//                 const keys = Object.keys(previousMsgs);
-
-//                 for (let i = 0; i < keys.length; i++) {
-//                     const currentPrevMsg = previousMsgs[i];
-//                     console.log("message is", currentPrevMsg);
-//                     arrayOfPrevMsgs.push(currentPrevMsg);
-//                 }
-
-//                 setPrevMsgs([...arrayOfPrevMsgs].reverse());
-//                 setMsgsLoading(false);
-//             }, 2000); // The inline function will be executed after a delay of 3000 milliseconds (3 seconds).
-//         } catch (error) {
-//             console.error("Error fetching data:", error);
-//         }
-//     };
-//     useEffect(() => {
-//         setMsgsLoading(true);
-//         setTimeout(fetchData, 2000);
-//     }, []);
-
-//     return (
-//         <Box
-//             sx={{
-//                 // bgcolor: "red",
-//                 marginTop: "0.9%",
-//                 // height: "86%",
-//                 // height: "90%",
-//                 height: horizontalLaptop || verticalPhone ? "90%" : "78%",
-//                 width: "99%",
-//                 display: "flex",
-//                 flexDirection: "column",
-//                 alignItems: "center",
-//                 // justifyContent: "center",
-//                 // bgcolor: "purple",
-//                 border: "2px solid #32c4a7",
-//                 borderRadius: "10px",
-//             }}
-//         >
-//             <Box
-//                 sx={{
-//                     // bgcolor: "orange",
-//                     width: "100%",
-//                     height: "100%",
-//                     display: "flex",
-//                     flexDirection: "column",
-//                     alignItems: "center",
-//                 }}
-//             >
-//                 <HistoryHeader
-//                     horizontalLaptop={horizontalLaptop}
-//                     verticalPhone={verticalPhone}
-//                     horizontalPhone={horizontalPhone}
-//                 />
-//                 {/* <ChatHistory
-//                     horizontalLaptop={horizontalLaptop}
-//                     verticalPhone={verticalPhone}
-//                     horizontalPhone={horizontalPhone}
-//                     msgsLoading={msgsLoading || true}
-//                     prevMsgs={prevMsgs || []}
-//                 /> */}
-//                 <Box
-//                     sx={{
-//                         width: "98%",
-//                         height: "85%",
-//                         // height: "80%",
-//                         // bgcolor: "purple",
-//                         marginTop: "0.5%",
-//                         border: "2px solid #32c4a7", //comment out this and line below once component for chathistory item developed
-//                         borderRadius: "10px",
-//                         // display: "flex",
-//                         overflow: "auto",
-//                         flexDirection: "column",
-//                         alignItems: "center",
-//                         // color: "white",
-//                         display: "-webkit-box",
-//                         color: "white",
-//                         "-webkit-line-clamp": 3,
-//                         "-webkit-box-orient": "vertical",
-//                     }}
-//                 >
-//                     {msgsLoading ? (
-//                         <CircularProgress />
-//                     ) : prevMsgs ? (
-//                         prevMsgs.map((chat: Message, index: number) => (
-//                             <ChatHistoryItem
-//                                 key={index}
-//                                 horizontalLaptop={horizontalLaptop}
-//                                 verticalPhone={verticalPhone}
-//                                 horizontalPhone={horizontalPhone}
-//                                 message={chat}
-//                             />
-//                         ))
-//                     ) : (
-//                         <></>
-//                     )}
-//                 </Box>
-//             </Box>
-//         </Box>
-//     );
-// };
-
-// export default HistorySection;
 import RefreshIcon from "@mui/icons-material/Refresh";
 import React, { useEffect, useState } from "react";
-// import HistoryHeader from "./HistoryHeader";
 import { Box, IconButton, CircularProgress, Typography } from "@mui/material";
 import ChatHistoryItem from "./ChatHistoryItem";
 import {
-    getMessageCount,
-    getPrevMessages,
+    getPreviousChatsCount,
+    getPreviousChatsAction,
 } from "../../../../../store/actions/chatActions";
 import { openAlert } from "../../../../../store/reducers/alertReducer";
 import { useDispatch } from "react-redux";
@@ -190,7 +50,7 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
             // const previousMsgs =
             //     (await getPrevMessages()) as PrevMessagesResponse;
             const previousMsgs =
-                (await getPrevMessages()) as PrevMessagesResponse;
+                (await getPreviousChatsAction()) as PrevMessagesResponse;
             var arrayOfPrevMsgs: Message[] = [];
             // var arrayOfPrevMsgs;
 
@@ -204,7 +64,9 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
 
                 // setPrevMsgs([...arrayOfPrevMsgs].reverse());
                 arrayOfPrevMsgs = previousMsgs;
-                console.log("history says msgs are", arrayOfPrevMsgs);
+
+                console.log("history says msgs are", previousMsgs);
+                console.log("history says prev msgs are", arrayOfPrevMsgs);
                 if (arrayOfPrevMsgs.length > 0) {
                     setPrevMsgs(arrayOfPrevMsgs.reverse());
                 } else {
@@ -229,9 +91,9 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
     const getCount = async () => {
         try {
             // const count = (await getMessageCount()) as number;
-            const count = await getMessageCount();
+            const count = (await getPreviousChatsCount()) as number;
 
-            console.log("section says cohnt is ", count);
+            console.log("section says count is ", count);
 
             setMsgsCount(count);
         } catch (error) {

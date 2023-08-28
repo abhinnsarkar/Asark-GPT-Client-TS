@@ -56,50 +56,37 @@ export const useSendPrompt = () => {
         try {
             const response = await api.sendPrompt(promptValue);
 
-            // if ("error" in response && response.error) {
             if (response.error) {
                 console.error("Error:", response.exception);
-                return ""; // Return an empty string or handle the error case appropriately
+                return "";
             } else {
                 const responseData = response as string;
                 console.log("aiSaid in CHAT ACTIONS", responseData);
                 console.log("in CHAT ACTIONS", typeof responseData);
-                // return responseData.aiResponse; // Return the AI response string
-                return responseData; // Return the AI response string
+
+                return responseData;
             }
         } catch (error) {
             console.error("Error:", error);
-            return ""; // Return an empty string or handle the error case appropriately
+            const alertData = {
+                content: error,
+                severity: "error",
+            };
+            dispatch(openAlert(alertData));
+            return "";
         }
     };
 
     return handleSendPrompt;
 };
 
-export const getPrevMessages = async () => {
-    console.log("in the api actions for get prev msgs");
-    const prevMessages = await api.getMessages();
-    console.log("chat actions said prev messages", prevMessages);
-    console.log("chat says theyre of type", Object.keys(prevMessages));
-    return prevMessages;
+export const getPreviousChatsAction = async () => {
+    const previousChats = await api.getPreviousChats();
+    return previousChats;
 };
 
-type ApiResponse = {
-    data: {
-        count: number;
-    };
-    status: number;
-    statusText: string;
-    headers: any; // You might want to create a more specific type for headers
-    config: any; // You might want to create a more specific type for config
-    request: XMLHttpRequest; // You might want to create a more specific type for request
-};
+export const getPreviousChatsCount = async () => {
+    const count = await api.getPreviousChatsCount();
 
-export const getMessageCount = async () => {
-    console.log("in the api actions for get prev msgs coount");
-    const count = (await api.getMessagesCount()) as ApiResponse;
-
-    // console.log("chat actions said prev messages", prevMessages);
-    // console.log("chat says theyre of type", Object.keys(prevMessages));
-    return count.data.count;
+    return count;
 };

@@ -1,5 +1,5 @@
-import { Box, Button, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import { Box } from "@mui/material";
+import React from "react";
 import AccountForLaptop from "./AccountForLaptop";
 import ChatSection from "./ChatSection/ChatSection";
 
@@ -17,7 +17,6 @@ const HomeMiddle = ({
             <Box
                 sx={{
                     width: "100%",
-                    // height: "100%",
                     display: "flex",
                     height: "89vh",
                     flexDirection: "row",

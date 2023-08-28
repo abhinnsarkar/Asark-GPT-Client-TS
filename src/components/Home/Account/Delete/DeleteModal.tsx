@@ -11,7 +11,7 @@ import {
     Button,
     IconButton,
 } from "@mui/material";
-import { useDeleteAccount } from "../../../../../store/actions/authActions";
+import { useDeleteAccount } from "../../../../store/actions/authActions";
 import React from "react";
 
 type DeleteModalProps = {
