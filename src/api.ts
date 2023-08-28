@@ -1,5 +1,4 @@
-import { Token } from "@mui/icons-material";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 interface Chat {
     user: string;
@@ -32,8 +31,8 @@ interface getPreviousChatsResponse {
 }
 
 export const apiClient = axios.create({
-    // baseURL: "https://asark-gpt-backend.onrender.com/api",
-    baseURL: "http://localhost:54321/api/",
+    baseURL: "https://asark-gpt-backend.onrender.com/api",
+    // baseURL: "http://localhost:54321/api/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -86,8 +85,8 @@ export const sendPrompt = async (promptValue: string) => {
 
     try {
         const response = await fetch(
-            // "https://asark-gpt-backend.onrender.com/api/prompts",
-            "http://localhost:54321/api/chats",
+            "https://asark-gpt-backend.onrender.com/api/chats",
+            // "http://localhost:54321/api/chats",
             options
         );
         const data = await response.json();
