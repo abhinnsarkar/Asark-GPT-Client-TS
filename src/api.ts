@@ -2,7 +2,8 @@ import axios from "axios";
 
 export const apiClient = axios.create({
     // baseURL: "https://asark-gpt-backend.onrender.com/api",
-    baseURL: "http://localhost:54321/api/",
+    baseURL: process.env.REACT_APP_BACKEND_URL,
+    // baseURL: "http://localhost:54321/api/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -85,8 +86,11 @@ export const sendPrompt = async (promptValue: string) => {
 
     try {
         const response = await fetch(
+            process.env.REACT_APP_BACKEND_CHATS_URL
+                ? process.env.REACT_APP_BACKEND_CHATS_URL
+                : "",
             // "https://asark-gpt-backend.onrender.com/api/prompts",
-            "http://localhost:54321/api/chats",
+            // "http://localhost:54321/api/chats",
             options
         );
         const data = await response.json();

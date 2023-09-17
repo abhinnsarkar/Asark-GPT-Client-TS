@@ -185,7 +185,7 @@ const AnswerModal: React.FC<AnswerModalProps> = ({
                         onClick={handleClose}
                         style={{ color: "white" }}
                     >
-                        <CloseIcon fontSize="large" />
+                        <CloseIcon fontSize="large" sx={{ color: "white" }} />
                     </IconButton>
                 </Box>
 

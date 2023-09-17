@@ -69,7 +69,10 @@ const AccountPopup: React.FC<AccountPopupProps> = ({
                             onClick={handleClose}
                             sx={{ color: "white" }}
                         >
-                            <CloseIcon fontSize="large" />
+                            <CloseIcon
+                                fontSize="large"
+                                sx={{ color: "white" }}
+                            />
                         </IconButton>
                     </Box>
 

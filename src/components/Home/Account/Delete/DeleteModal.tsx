@@ -73,7 +73,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
                     }}
                 >
                     <IconButton onClick={handleClose}>
-                        <CloseIcon fontSize="large" />
+                        <CloseIcon fontSize="large" sx={{ color: "white" }} />
                     </IconButton>
                 </Box>
                 <Box
