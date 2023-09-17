@@ -57,7 +57,7 @@ const AuthHeader = ({
                             // }}
                             onClick={() => {
                                 navigate("/welcome");
-                                console.log("cliked welcome page btn");
+                                // console.log("cliked welcome page btn");
                                 // return redirect(endpoint);
                             }}
                         >

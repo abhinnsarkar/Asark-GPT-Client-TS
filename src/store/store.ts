@@ -7,6 +7,7 @@ const store = configureStore({
         auth: authReducer,
         alert: alertReducer,
     },
+    devTools: process.env.REACT_APP_NODE_ENV !== "production",
 });
 
 export type RootState = ReturnType<typeof store.getState>;

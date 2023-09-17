@@ -21,7 +21,7 @@ const ChatHistory = ({
     msgsLoading: boolean;
     prevMsgs: Message[];
 }) => {
-    console.log("history says msgs are", prevMsgs);
+    // console.log("history says msgs are", prevMsgs);
 
     return (
         <Box

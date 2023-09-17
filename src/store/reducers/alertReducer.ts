@@ -21,7 +21,7 @@ const alertSlice = createSlice({
     initialState,
     reducers: {
         openAlert: (state, action) => {
-            console.log(action);
+            // console.log(action);
             return {
                 ...state,
                 alert: {

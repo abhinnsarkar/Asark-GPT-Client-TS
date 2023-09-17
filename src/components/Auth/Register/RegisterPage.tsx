@@ -44,14 +44,14 @@ const RegisterPage = ({
     const handleCloseLoading = () => setLoadingOpen(false);
 
     const closeModal = () => {
-        console.log("closing modal");
+        // console.log("closing modal");
         handleCloseLoading();
     };
 
     const handleSubmit = async () => {
         const user = { name, email, password };
         handleOpenLoading();
-        console.log("user", user);
+        // console.log("user", user);
 
         await handleRegister({ user }).then(() => {
             closeModal();

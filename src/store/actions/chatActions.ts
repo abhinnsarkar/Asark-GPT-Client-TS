@@ -61,8 +61,8 @@ export const useSendPrompt = () => {
                 return "";
             } else {
                 const responseData = response as string;
-                console.log("aiSaid in CHAT ACTIONS", responseData);
-                console.log("in CHAT ACTIONS", typeof responseData);
+                // console.log("aiSaid in CHAT ACTIONS", responseData);
+                // console.log("in CHAT ACTIONS", typeof responseData);
 
                 return responseData;
             }

@@ -38,7 +38,7 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
     };
 
     const fetchData = async () => {
-        console.log("inside fetch data");
+        // console.log("inside fetch data");
 
         const alertData = {
             content: "Refreshing Messages",
@@ -65,8 +65,8 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                 // setPrevMsgs([...arrayOfPrevMsgs].reverse());
                 arrayOfPrevMsgs = previousMsgs;
 
-                console.log("history says msgs are", previousMsgs);
-                console.log("history says prev msgs are", arrayOfPrevMsgs);
+                // console.log("history says msgs are", previousMsgs);
+                // console.log("history says prev msgs are", arrayOfPrevMsgs);
                 if (arrayOfPrevMsgs.length > 0) {
                     setPrevMsgs(arrayOfPrevMsgs.reverse());
                 } else {
@@ -78,7 +78,7 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
 
             getCount();
 
-            console.log("history says msgs are", arrayOfPrevMsgs);
+            // console.log("history says msgs are", arrayOfPrevMsgs);
             // console.log(
             //     "history says msgs are",
             //     [...arrayOfPrevMsgs].reverse()
@@ -93,7 +93,7 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
             // const count = (await getMessageCount()) as number;
             const count = (await getPreviousChatsCount()) as number;
 
-            console.log("section says count is ", count);
+            // console.log("section says count is ", count);
 
             setMsgsCount(count);
         } catch (error) {

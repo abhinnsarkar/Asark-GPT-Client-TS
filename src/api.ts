@@ -1,5 +1,13 @@
 import axios from "axios";
 
+export const apiClient = axios.create({
+    // baseURL: "https://asark-gpt-backend.onrender.com/api",
+    baseURL: "http://localhost:54321/api/",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
+
 interface Chat {
     user: string;
     ai: string;
@@ -29,14 +37,6 @@ interface getPreviousChatsResponse {
     status: number;
     statusText: string;
 }
-
-export const apiClient = axios.create({
-    baseURL: "https://asark-gpt-backend.onrender.com/api",
-    // baseURL: "http://localhost:54321/api/",
-    headers: {
-        "Content-Type": "application/json",
-    },
-});
 
 export const register = async (user: object) => {
     console.log("entered api register");
@@ -85,8 +85,8 @@ export const sendPrompt = async (promptValue: string) => {
 
     try {
         const response = await fetch(
-            "https://asark-gpt-backend.onrender.com/api/chats",
-            // "http://localhost:54321/api/chats",
+            // "https://asark-gpt-backend.onrender.com/api/prompts",
+            "http://localhost:54321/api/chats",
             options
         );
         const data = await response.json();

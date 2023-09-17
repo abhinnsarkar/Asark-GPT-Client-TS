@@ -83,15 +83,15 @@ export const useHandleRegister = () => {
                     },
                 };
 
-                console.log("putting in state", stateUser);
+                // console.log("putting in state", stateUser);
 
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("user", JSON.stringify(user));
 
-                console.log("Dispatching action:", register(stateUser));
-                console.log("Before dispatch:", store.getState().auth);
+                // console.log("Dispatching action:", register(stateUser));
+                // console.log("Before dispatch:", store.getState().auth);
                 dispatch(register(stateUser));
-                console.log("After dispatch:", store.getState().auth);
+                // console.log("After dispatch:", store.getState().auth);
 
                 dispatch(register(stateUser));
                 setAuthToken();
@@ -102,8 +102,8 @@ export const useHandleRegister = () => {
                 };
                 dispatch(openAlert(alertData));
 
-                console.log("Successfully made an account");
-                console.log("pushing to home from register");
+                // console.log("Successfully made an account");
+                // console.log("pushing to home from register");
 
                 // navigate("/home");
                 redirect("/home");
@@ -126,7 +126,7 @@ export const useHandleLogin = () => {
             const response = await api.login(user);
 
             if ("error" in response && response.error) {
-                console.log("caught an error at line 117");
+                // console.log("caught an error at line 117");
                 console.error("Error:", (response as ErrorResponse).exception);
                 const alertData = {
                     content:
@@ -151,15 +151,15 @@ export const useHandleLogin = () => {
                     },
                 };
 
-                console.log("putting in state", stateUser);
+                // console.log("putting in state", stateUser);
 
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("user", JSON.stringify(user));
 
-                console.log("Dispatching action:", login(stateUser));
-                console.log("Before dispatch:", store.getState().auth);
+                // console.log("Dispatching action:", login(stateUser));
+                // console.log("Before dispatch:", store.getState().auth);
                 dispatch(login(stateUser));
-                console.log("After dispatch:", store.getState().auth);
+                // console.log("After dispatch:", store.getState().auth);
 
                 dispatch(login(stateUser));
                 setAuthToken();
@@ -170,8 +170,8 @@ export const useHandleLogin = () => {
                 };
                 dispatch(openAlert(alertData));
 
-                console.log("Successfully logged in");
-                console.log("pushing to home from login");
+                // console.log("Successfully logged in");
+                // console.log("pushing to home from login");
 
                 // navigate("/home");
                 redirect("/home");
@@ -220,8 +220,8 @@ export const useDeleteAccount = () => {
                         dispatch(deleteAccount());
                     }, 2000);
 
-                    console.log("Successfully deleted account");
-                    console.log("pushing to welcome from home");
+                    // console.log("Successfully deleted account");
+                    // console.log("pushing to welcome from home");
 
                     // navigate("/home");
                     // redirect("/");

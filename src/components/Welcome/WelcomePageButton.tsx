@@ -39,7 +39,7 @@ const WelcomePageButton = ({
             }}
             onClick={() => {
                 navigate(endpoint);
-                console.log("cliked welcome page btn");
+                // console.log("cliked welcome page btn");
                 // return redirect(endpoint);
             }}
         >

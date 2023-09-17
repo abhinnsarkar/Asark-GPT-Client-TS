@@ -15,7 +15,7 @@ const AccountInfo = ({ horizontalPhone }: { horizontalPhone: boolean }) => {
 
     const user = authDetails.user as userFormat;
 
-    console.log("auth user ", typeof user);
+    // console.log("auth user ", typeof user);
 
     return (
         <Box

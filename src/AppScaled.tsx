@@ -22,16 +22,16 @@ const AppScaled = () => {
                 window.innerWidth > window.innerHeight &&
                     window.innerWidth < 1000
             );
-            console.log("horizontalLaptop", window.innerWidth > 1000);
-            console.log(
-                "verticalPhone",
-                window.innerHeight > window.innerWidth
-            );
-            console.log(
-                "horizontalPhone",
-                window.innerWidth > window.innerHeight &&
-                    window.innerWidth < 1000
-            );
+            // console.log("horizontalLaptop", window.innerWidth > 1000);
+            // console.log(
+            //     "verticalPhone",
+            //     window.innerHeight > window.innerWidth
+            // );
+            // console.log(
+            //     "horizontalPhone",
+            //     window.innerWidth > window.innerHeight &&
+            //         window.innerWidth < 1000
+            // );
         };
 
         window.addEventListener("resize", handleOrientationChange);

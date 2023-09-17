@@ -210,14 +210,14 @@ const LoginPage: React.FC<LoginPageProps> = ({
     const handleCloseLoading = () => setLoadingOpen(false);
 
     const closeModal = () => {
-        console.log("closing modal");
+        // console.log("closing modal");
         handleCloseLoading();
     };
 
     const handleSubmit = async () => {
         const user = { email, password };
         handleOpenLoading();
-        console.log("user", user);
+        // console.log("user", user);
 
         await handleLogin({ user }).then(() => {
             closeModal();

@@ -24,7 +24,7 @@ const AccountHeader: React.FC<AccountProps> = ({
 
     const authDetails = useSelector((state: RootState) => state.auth);
 
-    console.log("account details : ", authDetails);
+    // console.log("account details : ", authDetails);
 
     useEffect(() => {
         horizontalLaptop ? setDisabled(true) : setDisabled(false);

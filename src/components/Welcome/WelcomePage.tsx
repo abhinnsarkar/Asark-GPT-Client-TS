@@ -27,12 +27,12 @@ const WelcomePage = ({
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            console.log("user logged in");
+            // console.log("user logged in");
             setAuthToken(); // Assuming this sets the authentication token
             // redirect("/home"); // Assuming this redirects to the home page
             navigate("/home"); // Assuming this redirects to the home page
         } else {
-            console.log("user NOT logged in, go back to welcome page");
+            // console.log("user NOT logged in, go back to welcome page");
             // redirect("/"); // Assuming this redirects to the welcome page
             navigate("/");
         }

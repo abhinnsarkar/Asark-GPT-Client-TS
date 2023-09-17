@@ -23,7 +23,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         register: (state, action) => {
-            console.log("action is: ", action);
+            // console.log("action is: ", action);
             state.isAuthenticated = true;
             state.user = action.payload.user;
             state.token = action.payload.token;
@@ -34,7 +34,7 @@ const authSlice = createSlice({
         },
 
         login: (state, action) => {
-            console.log("action is: ", action);
+            // console.log("action is: ", action);
             state.isAuthenticated = true;
             state.user = action.payload.user;
             state.token = action.payload.token;
