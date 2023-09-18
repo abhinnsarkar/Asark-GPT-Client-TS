@@ -1,9 +1,7 @@
 import axios from "axios";
 
 export const apiClient = axios.create({
-    // baseURL: "https://asark-gpt-backend.onrender.com/api",
     baseURL: process.env.REACT_APP_BACKEND_URL,
-    // baseURL: "http://localhost:54321/api/",
     headers: {
         "Content-Type": "application/json",
     },
@@ -40,12 +38,7 @@ interface getPreviousChatsResponse {
 }
 
 export const register = async (user: object) => {
-    console.log("entered api register");
     try {
-        console.log("inside api register try");
-        console.log(user);
-        console.log(`Giving endpoint data : ${user}`);
-        // console.log("api is ", apiClient);
         return await apiClient.post("/auth/register", user);
     } catch (exception) {
         return {
@@ -56,11 +49,7 @@ export const register = async (user: object) => {
 };
 
 export const login = async (user: object) => {
-    console.log("entered api login");
     try {
-        console.log("inside api login try");
-        console.log(user);
-        console.log(`Giving endpoint data : ${user}`);
         return await apiClient.post("/auth/login", user);
     } catch (exception) {
         return {
@@ -146,7 +135,7 @@ export const getPreviousChatsCount = async () => {
         apiClient.defaults.headers["x-auth-token"] = token;
 
         const previousChatsCountResponse = (await apiClient.get(
-            "/chats/previous-count"
+            "/chats/count"
         )) as getPreviousChatsCountResponse;
         const previousChatsCount = previousChatsCountResponse.data.count;
 

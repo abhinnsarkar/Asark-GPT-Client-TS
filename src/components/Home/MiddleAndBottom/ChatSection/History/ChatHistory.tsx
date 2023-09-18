@@ -21,16 +21,13 @@ const ChatHistory = ({
     msgsLoading: boolean;
     prevMsgs: Message[];
 }) => {
-    // console.log("history says msgs are", prevMsgs);
-
     return (
         <Box
             sx={{
                 width: "98%",
                 height: "85%",
-                // bgcolor: "purple",
                 marginTop: "0.5%",
-                border: "2px solid #32c4a7", //comment out this and line below once component for chathistory item developed
+                border: "2px solid #32c4a7",
                 borderRadius: "10px",
                 display: "flex",
                 flexDirection: "column",

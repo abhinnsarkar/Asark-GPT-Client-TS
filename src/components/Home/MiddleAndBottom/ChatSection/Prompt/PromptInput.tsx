@@ -37,11 +37,10 @@ export const PromptInput: React.FC<PromptInputProps> = ({
     const handleCloseLoading = () => setLoadingOpen(false);
 
     const useCloseModal = async () => {
-        // console.log("closing modal");
         setPromptValue("");
         handleCloseLoading();
         handleCloseAnswer();
-        // console.log("abt to display alert");
+
         const alertData = {
             content: "Click the reload icon to display all messages",
             severity: "info",
@@ -64,7 +63,6 @@ export const PromptInput: React.FC<PromptInputProps> = ({
 
     const getResponse = async (): Promise<string> => {
         const answerToReturn = await handleSendPrompt({ promptValue });
-        // console.log("answerToReturn", answerToReturn);
         return answerToReturn;
     };
 
@@ -77,10 +75,9 @@ export const PromptInput: React.FC<PromptInputProps> = ({
             };
             dispatch(openAlert(alertData));
         }, 2000);
-        // console.log("prompt is : ", promptValue);
+        
         const answer = await getResponse();
 
-        // console.log("answer is ", answer);
         setAiValue(answer);
         handleOpenAnswer();
     };

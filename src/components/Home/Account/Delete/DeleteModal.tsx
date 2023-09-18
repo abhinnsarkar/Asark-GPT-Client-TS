@@ -32,7 +32,6 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
-        // console.log("changed to ", !checked);
     };
 
     const fullScreen = horizontalLaptop ? false : true;
@@ -40,10 +39,6 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
     const deleteAccount = useDeleteAccount();
 
     const handleDeleteAccount = async () => {
-        // const user = { email, password };
-        // handleOpenLoading();
-        // console.log("user", user);
-
         await deleteAccount();
     };
 
@@ -58,7 +53,6 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
                     width: fullScreen ? "100vw" : "75vw",
                     height: fullScreen ? "100vh" : "75vh",
                     bgcolor: "#202123",
-                    // bgcolor: "red",
                     border: "5px solid #32c4a7",
                     borderRadius: "15px",
                     boxShadow: 24,
@@ -78,7 +72,6 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
                 </Box>
                 <Box
                     sx={{
-                        // bgcolor: "green",
                         height: "60%",
                         width: "100%",
                     }}
@@ -97,7 +90,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
                                 WARNING: this action can NOT be undone
                             </Typography>
                         </DialogContentText>
-                        {/* <br></br> */}
+
                         <Switch
                             sx={{
                                 "& .MuiSwitch-switchBase": {
@@ -131,14 +124,12 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
                         alignItems: "center",
                         justifyContent: "center",
                         flexDirection: "row",
-                        // bgcolor: "blue",
                         height: "40%",
                         width: "100%",
                     }}
                 >
                     <Box
                         sx={{
-                            // bgcolor: "red",
                             width: "100%",
                             height: "90%",
                             display: "flex",
@@ -151,19 +142,14 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
                             sx={{
                                 bgcolor: "#202123",
                                 textAlign: "center",
-                                // width: width.toString() + "%",
                                 width: "48%",
-                                // height: "50%",
                                 height: "25%",
                                 color: "white",
                                 border: "2px solid red",
                                 borderRadius: "10px",
                                 "&:hover": {
                                     bgcolor: "#202123",
-                                    // width: hoverWidth,
                                     width: "50%",
-                                    // height: "52%",
-                                    // height: "100%",
                                 },
                                 marginTop: "10px",
                             }}

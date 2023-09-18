@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { apiClient } from "../../../api";
+import React, { useState } from "react";
 import { useHandleRegister } from "../../../store/actions/authActions";
 import LoadingModal from "../../../shared/components/LoadingModal";
-import { Box, Button, CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import RegisterHeader from "./Sections/RegisterHeader";
 import RegisterMiddle from "./Sections/RegisterMiddle";
 import RegisterFooter from "./Sections/RegisterFooter";
 import { Navigate } from "react-router";
 import useGetIsLoggedIn from "../../../shared/utils/getIsLoggedIn";
-import setAuthToken from "../../../shared/utils/setAuthToken";
 
 const RegisterPage = ({
     horizontalLaptop,
@@ -19,21 +17,7 @@ const RegisterPage = ({
     verticalPhone: boolean;
     horizontalPhone: boolean;
 }) => {
-    // const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (localStorage.getItem("token")) {
-    //         setAuthToken();
-    //         navigate("/home");
-    //     }
-    // }, [navigate]);
-
     const handleRegister = useHandleRegister(); // Call the useHandleRegister hook to get the function
-    interface RegisterUser {
-        name: string;
-        email: string;
-        password: string;
-    }
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -44,15 +28,12 @@ const RegisterPage = ({
     const handleCloseLoading = () => setLoadingOpen(false);
 
     const closeModal = () => {
-        // console.log("closing modal");
         handleCloseLoading();
     };
 
     const handleSubmit = async () => {
         const user = { name, email, password };
         handleOpenLoading();
-        // console.log("user", user);
-
         await handleRegister({ user }).then(() => {
             closeModal();
         });

@@ -48,8 +48,6 @@ const SignInComponent = () => {
                     email: responseData.user.email,
                 },
             };
-            // console.log("responseData is finally", responseData);
-            // console.log("putting in state", userToPutInState);
             dispatch(register(userToPutInState));
         } catch (error) {
             console.error("Error:", error);

@@ -18,11 +18,9 @@ const HomePage = ({
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            // console.log("user logged in");
             setAuthToken();
             navigate("/home");
         } else {
-            // console.log("user NOT logged in, go back to welcome page");
             navigate("/");
         }
     }, [navigate]);

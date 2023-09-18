@@ -3,7 +3,6 @@ import React from "react";
 import AccountInfoItem from "./AccountInfoItem";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { type } from "os";
 
 const AccountInfo = ({ horizontalPhone }: { horizontalPhone: boolean }) => {
     const authDetails = useSelector((state: RootState) => state.auth);
@@ -15,8 +14,6 @@ const AccountInfo = ({ horizontalPhone }: { horizontalPhone: boolean }) => {
 
     const user = authDetails.user as userFormat;
 
-    // console.log("auth user ", typeof user);
-
     return (
         <Box
             className="box-user-info"
@@ -26,7 +23,6 @@ const AccountInfo = ({ horizontalPhone }: { horizontalPhone: boolean }) => {
                 display: "flex",
                 alignItems: "center",
                 flexDirection: "column",
-                // bgcolor: "red",
             }}
         >
             <Box

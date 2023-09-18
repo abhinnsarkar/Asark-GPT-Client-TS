@@ -38,8 +38,6 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
     };
 
     const fetchData = async () => {
-        // console.log("inside fetch data");
-
         const alertData = {
             content: "Refreshing Messages",
             severity: "info",
@@ -47,12 +45,9 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
         dispatch(openAlert(alertData));
 
         try {
-            // const previousMsgs =
-            //     (await getPrevMessages()) as PrevMessagesResponse;
             const previousMsgs =
                 (await getPreviousChatsAction()) as PrevMessagesResponse;
             var arrayOfPrevMsgs: Message[] = [];
-            // var arrayOfPrevMsgs;
 
             setTimeout(function () {
                 const keys = Object.keys(previousMsgs);
@@ -62,11 +57,8 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                     arrayOfPrevMsgs.push(currentPrevMsg);
                 }
 
-                // setPrevMsgs([...arrayOfPrevMsgs].reverse());
                 arrayOfPrevMsgs = previousMsgs;
 
-                // console.log("history says msgs are", previousMsgs);
-                // console.log("history says prev msgs are", arrayOfPrevMsgs);
                 if (arrayOfPrevMsgs.length > 0) {
                     setPrevMsgs(arrayOfPrevMsgs.reverse());
                 } else {
@@ -77,12 +69,6 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
             }, 2000);
 
             getCount();
-
-            // console.log("history says msgs are", arrayOfPrevMsgs);
-            // console.log(
-            //     "history says msgs are",
-            //     [...arrayOfPrevMsgs].reverse()
-            // );
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -90,10 +76,7 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
 
     const getCount = async () => {
         try {
-            // const count = (await getMessageCount()) as number;
             const count = (await getPreviousChatsCount()) as number;
-
-            // console.log("section says count is ", count);
 
             setMsgsCount(count);
         } catch (error) {
@@ -129,16 +112,10 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                     alignItems: "center",
                 }}
             >
-                {/* <HistoryHeader
-                    horizontalLaptop={horizontalLaptop}
-                    verticalPhone={verticalPhone}
-                    horizontalPhone={horizontalPhone}
-                /> */}
                 <Box
                     sx={{
                         width: "98%",
                         height: "12%",
-                        // bgcolor: "purple",
                         marginTop: "0.5%",
                         border: "2px solid #32c4a7",
                         borderRadius: "10px",
@@ -151,7 +128,6 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                     <Box
                         sx={{
                             width: "55%",
-                            // bgcolor: "red",
                             display: "flex",
                             flexDirection: "row",
                             alignItems: "center",
@@ -179,7 +155,6 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                     <Box
                         sx={{
                             width: "45%",
-                            // bgcolor: "blue",
                             display: "flex",
                             flexDirection: "row",
                             alignItems: "center",
@@ -198,12 +173,12 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
                         marginTop: "0.5%",
                         border: "2px solid #32c4a7",
                         borderRadius: "10px",
-                        overflow: "auto", // Add overflow property
+                        overflow: "auto",
                         flexDirection: "column",
                         alignItems: "center",
                         color: "white",
-                        display: "flex", // Use display: flex instead of -webkit-box
-                        flexFlow: "column", // Change to flexFlow
+                        display: "flex",
+                        flexFlow: "column",
                     }}
                 >
                     {msgsLoading ? (

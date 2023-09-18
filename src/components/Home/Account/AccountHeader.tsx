@@ -2,7 +2,6 @@ import { Box, Button, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import React, { useEffect } from "react";
 import AccountPopup from "./AccountPopup";
-import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 
@@ -21,10 +20,6 @@ const AccountHeader: React.FC<AccountProps> = ({
     const [open, setOpen] = React.useState<boolean>(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const authDetails = useSelector((state: RootState) => state.auth);
-
-    // console.log("account details : ", authDetails);
 
     useEffect(() => {
         horizontalLaptop ? setDisabled(true) : setDisabled(false);
@@ -45,12 +40,10 @@ const AccountHeader: React.FC<AccountProps> = ({
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    // bgcolor: "red",
                 }}
                 overflow="hidden"
             >
                 <Button
-                    // className={disabled ? classes.disabledButton : ""}
                     variant="contained"
                     color="primary"
                     sx={{
@@ -59,7 +52,6 @@ const AccountHeader: React.FC<AccountProps> = ({
                         textAlign: "center",
                         alignItems: "center",
                         justifyContent: "center",
-                        // width: "90%",
                         width: horizontalLaptop
                             ? "98%"
                             : horizontalPhone
@@ -91,8 +83,6 @@ const AccountHeader: React.FC<AccountProps> = ({
                         overflow: "hidden",
                         cursor: disabled ? "default" : "pointer",
                     }}
-                    // disabled={disabled}
-                    // onClick={handleOpen}
                     disableRipple={disabled}
                     onClick={handleAccountButtonClick}
                 >

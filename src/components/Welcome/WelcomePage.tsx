@@ -1,7 +1,6 @@
 import "./welcome.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import WelcomeButtons from "./WelcomeButtons";
-import useGetIsLoggedIn from "../../shared/utils/getIsLoggedIn";
 import { useEffect } from "react";
 import setAuthToken from "../../shared/utils/setAuthToken";
 
@@ -14,29 +13,17 @@ const WelcomePage = ({
     verticalPhone: boolean;
     horizontalPhone: boolean;
 }) => {
-    // const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (localStorage.getItem("token")) {
-    //         setAuthToken();
-    //         navigate("/home");
-    //     }
-    // }, [navigate]);
-
     const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            // console.log("user logged in");
-            setAuthToken(); // Assuming this sets the authentication token
-            // redirect("/home"); // Assuming this redirects to the home page
-            navigate("/home"); // Assuming this redirects to the home page
+            setAuthToken();
+
+            navigate("/home");
         } else {
-            // console.log("user NOT logged in, go back to welcome page");
-            // redirect("/"); // Assuming this redirects to the welcome page
             navigate("/");
         }
-    }, []); // Empty dependency array to ensure the effect runs once on mount
+    }, []);
 
     return (
         <section className="landing">
@@ -50,7 +37,6 @@ const WelcomePage = ({
                         horizontalLaptop={horizontalLaptop}
                         verticalPhone={verticalPhone}
                         horizontalPhone={horizontalPhone}
-                        // navigate={navigate}
                     />
                 </div>
             </div>

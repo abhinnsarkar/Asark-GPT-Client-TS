@@ -1,11 +1,9 @@
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router";
 import * as api from "../../api";
 import { register, login, deleteAccount } from "../reducers/authReducer";
-import { openAlert, closeAlert } from "../reducers/alertReducer";
+import { openAlert } from "../reducers/alertReducer";
 import setAuthToken from "../../shared/utils/setAuthToken";
-import store from "../store";
-// import { redirect } from "react-router-dom";
+
 import { redirect } from "react-router";
 import logout from "../../shared/utils/logout";
 
@@ -53,8 +51,6 @@ interface StateUser {
 export const useHandleRegister = () => {
     const dispatch = useDispatch();
 
-    // const navigate = useNavigate();
-
     const handleRegister = async ({ user }: { user: RegisterUser }) => {
         try {
             const response = await api.register(user);
@@ -83,15 +79,10 @@ export const useHandleRegister = () => {
                     },
                 };
 
-                // console.log("putting in state", stateUser);
-
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("user", JSON.stringify(user));
 
-                // console.log("Dispatching action:", register(stateUser));
-                // console.log("Before dispatch:", store.getState().auth);
                 dispatch(register(stateUser));
-                // console.log("After dispatch:", store.getState().auth);
 
                 dispatch(register(stateUser));
                 setAuthToken();
@@ -102,10 +93,6 @@ export const useHandleRegister = () => {
                 };
                 dispatch(openAlert(alertData));
 
-                // console.log("Successfully made an account");
-                // console.log("pushing to home from register");
-
-                // navigate("/home");
                 redirect("/home");
             }
         } catch (error) {
@@ -119,14 +106,11 @@ export const useHandleRegister = () => {
 export const useHandleLogin = () => {
     const dispatch = useDispatch();
 
-    // const navigate = useNavigate();
-
     const handleLogin = async ({ user }: { user: LoginUser }) => {
         try {
             const response = await api.login(user);
 
             if ("error" in response && response.error) {
-                // console.log("caught an error at line 117");
                 console.error("Error:", (response as ErrorResponse).exception);
                 const alertData = {
                     content:
@@ -151,15 +135,10 @@ export const useHandleLogin = () => {
                     },
                 };
 
-                // console.log("putting in state", stateUser);
-
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("user", JSON.stringify(user));
 
-                // console.log("Dispatching action:", login(stateUser));
-                // console.log("Before dispatch:", store.getState().auth);
                 dispatch(login(stateUser));
-                // console.log("After dispatch:", store.getState().auth);
 
                 dispatch(login(stateUser));
                 setAuthToken();
@@ -170,10 +149,6 @@ export const useHandleLogin = () => {
                 };
                 dispatch(openAlert(alertData));
 
-                // console.log("Successfully logged in");
-                // console.log("pushing to home from login");
-
-                // navigate("/home");
                 redirect("/home");
             }
         } catch (error) {
@@ -186,8 +161,6 @@ export const useHandleLogin = () => {
 
 export const useDeleteAccount = () => {
     const dispatch = useDispatch();
-
-    // const navigate = useNavigate();
 
     const handleDeleteAccount = async () => {
         try {
@@ -205,8 +178,6 @@ export const useDeleteAccount = () => {
                 dispatch(openAlert(alertData));
                 return;
             } else {
-                // const responseData = (response as SuccessResponse).data;
-
                 const alertData = {
                     content: "Successfully Deleted Account",
                     severity: "success",
@@ -219,12 +190,6 @@ export const useDeleteAccount = () => {
                     setTimeout(() => {
                         dispatch(deleteAccount());
                     }, 2000);
-
-                    // console.log("Successfully deleted account");
-                    // console.log("pushing to welcome from home");
-
-                    // navigate("/home");
-                    // redirect("/");
                 }, 2500);
             }
         } catch (error) {

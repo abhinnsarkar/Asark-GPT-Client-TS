@@ -1,43 +1,6 @@
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router";
 import * as api from "../../api";
-import { openAlert, closeAlert } from "../reducers/alertReducer";
-import store from "../store";
-import { type } from "os";
-
-// interface SuccessResponse {
-//     aiResponse: string;
-// }
-
-interface ErrorResponse {
-    error: boolean;
-    exception: {
-        response: {
-            data: {
-                msg: string;
-            };
-        };
-    };
-}
-
-interface RegisterUser {
-    name: string;
-    email: string;
-    password: string;
-}
-
-interface LoginUser {
-    email: string;
-    password: string;
-}
-
-interface StateUser {
-    token: string;
-    user: {
-        email: string;
-        name: string;
-    };
-}
+import { openAlert } from "../reducers/alertReducer";
 
 export const useSendPrompt = () => {
     const dispatch = useDispatch();
@@ -61,9 +24,6 @@ export const useSendPrompt = () => {
                 return "";
             } else {
                 const responseData = response as string;
-                // console.log("aiSaid in CHAT ACTIONS", responseData);
-                // console.log("in CHAT ACTIONS", typeof responseData);
-
                 return responseData;
             }
         } catch (error) {

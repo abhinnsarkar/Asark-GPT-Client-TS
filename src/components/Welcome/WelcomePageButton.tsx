@@ -1,7 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
-// import { NavigateFunction, redirect } from "react-router-dom";
-import { redirect, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const WelcomePageButton = ({
     label,
@@ -9,14 +7,12 @@ const WelcomePageButton = ({
     horizontalLaptop,
     verticalPhone,
     horizontalPhone,
-}: // navigate,
-{
+}: {
     label: string;
     endpoint: string;
     horizontalLaptop: boolean;
     verticalPhone: boolean;
     horizontalPhone: boolean;
-    // navigate: NavigateFunction;
 }) => {
     const navigate = useNavigate();
     return (
@@ -39,8 +35,6 @@ const WelcomePageButton = ({
             }}
             onClick={() => {
                 navigate(endpoint);
-                // console.log("cliked welcome page btn");
-                // return redirect(endpoint);
             }}
         >
             <Typography textTransform="none">{label}</Typography>

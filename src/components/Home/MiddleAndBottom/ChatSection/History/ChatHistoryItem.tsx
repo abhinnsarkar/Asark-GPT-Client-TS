@@ -17,10 +17,6 @@ const ChatHistoryItem = ({
     horizontalPhone: boolean;
     message: Message;
 }) => {
-    // console.log("messafe from item", message);
-
-    // console.log("user is ", user);
-    // console.log("ai is ", ai);
     return (
         <Box
             sx={{
